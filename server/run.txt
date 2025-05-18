@@ -1,0 +1,2 @@
+--with-pgsql[=C:\Program Files\PostgreSQL] 
+set DB_HOST=localhost & set DB_PORT=5432 & set DB_DATABASE=bookmarking_db & set DB_USERNAME=postgres& set DB_PASSWORD=vanilla
