@@ -12,20 +12,28 @@ function App() {
   const [currentMethod, setCurrentMethod] = useState(null)
 
   useEffect(() => {
-        const fetch = async () => {
-            let data
-            // if(currentMethod == "readAll") {
-                data = await readall()
-            // }
-            // else if(currentMethod == "readOne") {
-            //     console.log(data)
-            //     data = await readone(id)
-            // }
-            setList(<List data={data}/>)
-            console.log(data)
-        }
-        fetch()
-    }, [currentMethod])
+    const fetch = async () => {
+      let data
+      if (currentMethod == "readAll") {
+        data = await readall()
+      }
+      else if (currentMethod == "readOne") {
+        data = await readone(id)
+      }
+      else if (currentMethod == "create") {
+        data = await create(title, link)
+      }
+      else if (currentMethod == "update") {
+        data = await update(id, title)
+      }
+      else if (currentMethod == "delete") {
+        data = await deletereq(id)
+      }
+      console.log(data)
+      setList(<List data={data} />)
+    }
+    fetch()
+  }, [currentMethod])
 
   function handleClick(e) {
     setCurrentMethod(e.target.id)
@@ -50,6 +58,9 @@ function App() {
       <input name='link' type='text' onChange={handleInput}></input>
       <button id="readAll" onClick={handleClick}>read all</button>
       <button id="readOne" onClick={handleClick}>read one</button>
+      <button id="create" onClick={handleClick}>create</button>
+      <button id="update" onClick={handleClick}>update</button>
+      <button id="delete" onClick={handleClick}>delete</button>
       {list}
     </>
   )
